@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <h3><%= @user.name %>の情報です</h3>
+      <h4><strong>登録情報</strong></h4>
+        <table class="table table-hover table-bordered mt-2">
+          <tbody>
+            <tr>
+              <td class="table-active">名前</td>
+              <td><%= @user.name %></td>
+            </tr>
+            <tr>
+              <td class="table-active">出身地</td>
+              <td><%= @user.prefecture %></td>
+            </tr>
+          </tbody>
+        </table>
+        <table>
+          <tbody>
+            <tr>
+              <td><p>紹介文</p></td>
+            </tr>
+            <tr>
+              <td><%= @user.comment %></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="col-4">
+          <p><%= link_to "フォロー・フォロワー一覧", class: "btn btn-sm btn-primary ml-3" %></p>
+        </div>
+      </div>
+    </div>
+</div>
