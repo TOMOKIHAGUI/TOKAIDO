@@ -1,15 +1,10 @@
-class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+class Post < ApplicationRecord
 
-  validates :name, presence: true, uniqueness: true
-  validates :is_deleted, inclusion:{in: [true, false]}
+  validates :title, :prefecture, :user_id, :description, :address, presence: true
 
-  attachment :image
-
-  has_many :posts, dependent: :destroy
+  belongs_to :user
+  has_many :post_images, dependent: :destroy
+  accepts_attachments_for :post_images, attachment: :image
 
   enum prefecture:{
      "---":0,
@@ -23,9 +18,4 @@ class User < ApplicationRecord
      福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,
      沖縄県:47
    }
-
-  def active_for_authentication?
-    super && (self.is_deleted == false)
-  end
-
 end

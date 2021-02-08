@@ -1,0 +1,36 @@
+<h2>編集画面</h2>
+
+<%= form_with model: @post, url: posts_path, local:true do |f| %>
+  <table>
+    <tbody>
+      <tr>
+        <td>画像</td>
+        <td><%= f.attachment_field :post_images_images, multiple: true %></td>
+      </tr>
+      <tr>
+        <td>タイトル</td>
+        <td><%= f.text_field :title, autofocus: true %></td>
+      </tr>
+      <tr>
+        <td>内容</td>
+        <td><%= f.text_area :description %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :prefecture, "都道府県" %></td><br>
+        <td>
+        <%= f.select :prefecture, Post.prefectures.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info' %>
+        </td>
+      </tr>
+      <tr>
+        <td>住所</td>
+        <td><%= f.text_field :address %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= f.submit "編集する", class: "btn btn-primary" %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+<%= link_to "投稿を削除する", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger" %>
+<%= link_to "詳細ページへ", post_path(@post) %>
