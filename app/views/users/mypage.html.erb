@@ -6,6 +6,11 @@
         <table class="table table-hover table-bordered mt-2">
           <tbody>
             <tr>
+              <tb class="table-active">
+                <%= attachment_image_tag @user, :image, size: "200x200", fallback: "no_image.jpg" %>
+              </tb>
+            </tr>
+            <tr>
               <td class="table-active">氏名</td>
               <td><%= @user.name %></td>
             </tr>
@@ -33,7 +38,7 @@
         <div class="col-4">
           <p><%= link_to "フォロー・フォロワー一覧", class: "btn btn-sm btn-primary ml-3" %></p>
           <p><%= link_to "新規投稿する", new_post_path, class: "btn btn-sm btn-primary ml-3" %></p>
-          <p><%= link_to "退会する", confirm_public_customer_path(@user.id), class:"btn btn-sm btn-danger mt-2" %></p>
+          <p><%= link_to "退会する", confirm_user_path(@user.id), class:"btn btn-sm btn-danger mt-2" %></p>
         </div>
       </div>
     </div>

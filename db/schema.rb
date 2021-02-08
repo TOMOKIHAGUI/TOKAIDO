@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_07_060049) do
+ActiveRecord::Schema.define(version: 2021_02_08_071752) do
+
+  create_table "post_images", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.string "image_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "title", null: false
+    t.integer "prefecture", null: false
+    t.string "address", null: false
+    t.text "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -19,6 +36,7 @@ ActiveRecord::Schema.define(version: 2021_02_07_060049) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "comment"
+    t.string "image_id"
     t.boolean "is_deleted", default: false, null: false
     t.string "name", null: false
     t.integer "prefecture", default: 0, null: false

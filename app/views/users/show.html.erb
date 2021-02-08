@@ -1,10 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-8">
-      <h3><%= @user.name %>の情報です</h3>
+      <h3><%= @user.name %>さんの情報です</h3>
       <h4><strong>登録情報</strong></h4>
         <table class="table table-hover table-bordered mt-2">
           <tbody>
+            <tr>
+              <tb class="table-active">
+                <%= attachment_image_tag @user, :image, size: "200x200", fallback: "no_image.jpg" %>
+              </tb>
+            </tr>
             <tr>
               <td class="table-active">名前</td>
               <td><%= @user.name %></td>
