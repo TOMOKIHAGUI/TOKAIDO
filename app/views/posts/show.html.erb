@@ -11,6 +11,11 @@
   <%= link_to "編集する", edit_post_path(@post.id), class:"btn btn-sm btn-success" %>
   <%= link_to "削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger" %>
 <% end %>
+<div id="post_<%= @post.id %>">
+  <p class="favorite-btn">
+  <%= render 'favorites/favorite-btn', post: @post %>
+  </p>
+</div>
 
 <div>
   <p>コメント数：<%= @post.post_comments.count %></p>
