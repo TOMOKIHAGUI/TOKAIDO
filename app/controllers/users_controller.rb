@@ -8,15 +8,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def mypage
-    @user = User.find(params[:id])
-  end
-
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-       flash.now[:notice] = "登録情報が編集されました"
-      redirect_to mypage_user_path(@user.id)
+      redirect_to user_path(@user.id), notice: '投稿を編集しました。'
     else
       render "edit"
     end

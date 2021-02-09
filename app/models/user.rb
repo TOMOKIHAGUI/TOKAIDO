@@ -4,12 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, :email, presence: true, uniqueness: true
   validates :is_deleted, inclusion:{in: [true, false]}
 
   attachment :image
 
   has_many :posts, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
 
   enum prefecture:{
      "---":0,
