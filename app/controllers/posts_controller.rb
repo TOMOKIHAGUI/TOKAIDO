@@ -5,12 +5,12 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post(params[:id])
+    @post = Post.find(params[:id])
+    @comment = PostComment.new
   end
 
   def new
     @post = Post.new
-    @post.post_images.build
   end
 
   def create
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:user_id, :title, :prefecture, :address, :description, post_images_images: [])
+      params.require(:post).permit(:user_id, :title, :prefecture, :address, :description, :image)
       #:lutitude, :longitude
     end
 

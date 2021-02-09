@@ -1,0 +1,23 @@
+<table>
+  <tbody>
+
+    <% post.post_comments.each do |comments| %>
+      <tr>
+        <td>
+          <%= link_to user_path(comments.user) do %>
+            <%= attachment_image_tag comments.user, :image, format: 'jpeg', fallback: "no_image.jpg", size: "30x30" %></br>
+            <%= comments.user.name %>
+          <% end %>
+        </td>
+        <td>
+          <%= comments.comment %>
+        </td>
+          <% if comments.user == current_user %>
+            <td>
+              <%= link_to '削除', post_post_comment_path(comments.post_id, comments.id), method: :delete, remote: true, "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger" %>
+            </td>
+          <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>

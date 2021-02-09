@@ -5,12 +5,13 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show, :edit, :update] do
     member do
-      get "mypage"
       get "confirm"
       patch "hide"
     end
   end
 
-  resources :posts
+  resources :posts do
+    resources :post_comments, only: [:create, :destroy]
+  end
 
 end
