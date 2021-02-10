@@ -12,6 +12,10 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy #フォロワーとuserの紐づけ
+  has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy #フォローとuserの紐づけ
+  has_many :following_users, through: :follower, source: :followed #フォローとフォロワーの紐づけ
+  has_many :follower_users, through: :followed, source: :follower  #フォロワーとフォローの紐づけ
 
   enum prefecture:{
      "---":0,
@@ -25,6 +29,20 @@ class User < ApplicationRecord
      福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,
      沖縄県:47
    }
+   
+   #フォロー機能で使用するメソッド
+  def follow(user_id)
+    follower.create(followed_id: user_id)
+  end
+
+  def unfollow(user_id)
+    follower.find_by(followed_id: user_id).destroy
+  end
+
+  def following?(user)
+    following_users.include?(user)
+  end
+
 
   def active_for_authentication?
     super && (self.is_deleted == false)

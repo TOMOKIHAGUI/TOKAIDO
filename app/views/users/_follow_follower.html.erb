@@ -1,0 +1,31 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>ユーザー画像</th>
+      <th>ユーザー名</th>
+      <th>出身地</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <tr id="user_<%= user.id %>">
+        <td><%= attachment_image_tag user, :image, format: 'jpeg', fallback: "no_image.jpg", size: "40x40" %></td>
+        <td><%= user.name %></td>
+        <td><%= user.prefecture %></td>
+        <td class='following-count'><%= link_to "フォロー数：#{user.follower.count}", followings_user_path(user.id) %></td>
+        <td class='following-count'><%= link_to "フォロワー数：#{user.followed.count}", followers_user_path(user.id) %></td>
+        <td class="follow-btn">
+          <% unless user == current_user %>
+            <%= render "users/follow-btn", user: user %>
+          <% end %>
+        </td>
+        <td><%= link_to "Show", user_path(user.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

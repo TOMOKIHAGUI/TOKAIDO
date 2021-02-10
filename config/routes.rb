@@ -8,7 +8,14 @@ Rails.application.routes.draw do
       get "confirm"
       patch "hide"
     end
+    member do
+      get :followings
+      get :followers
+    end
   end
+
+  post 'follow/:id' => 'relationships#follow', as: 'follow'
+  delete 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
 
   resources :posts do
     resources :post_comments, only: [:create, :destroy]

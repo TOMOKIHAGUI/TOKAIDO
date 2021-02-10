@@ -8,7 +8,7 @@
       <% end %>
       <h4><strong>登録情報</strong></h4>
         <table class="table table-hover table-bordered mt-2">
-          <tbody>
+          <tbody id="user_<%= @user.id %>">
             <tr>
               <tb class="table-active">
                 <%= attachment_image_tag @user, :image, size: "200x200", fallback: "no_image.jpg" %>
@@ -28,6 +28,15 @@
               <td><%= @user.email %></td>
             </tr>
             <% end %>
+            <tr>
+              <td class='following-count'><%= link_to "フォロー数：#{@user.follower.count}", followings_user_path(@user.id) %></td>
+              <td class='following-count'><%= link_to "フォロワー数：#{@user.followed.count}", followers_user_path(@user.id) %></td>
+              <% unless @user == current_user %>
+              <td class='follow-btn'>
+                <%= render 'follow-btn', user: @user %>
+              </td>
+              <% end %>
+            </tr>
           </tbody>
         </table>
         <table>
@@ -42,7 +51,6 @@
         </table>
 
         <div class="col-4">
-          <p><%= link_to "フォロー・フォロワー一覧", class: "btn btn-sm btn-primary ml-3" %></p>
           <% if @user == current_user %>
           <p><%= link_to "編集する", edit_user_path(@user.id), class: "btn btn-sm btn-success ml-3" %></p>
           <p><%= link_to "新規投稿する", new_post_path, class: "btn btn-sm btn-primary ml-3" %></p>

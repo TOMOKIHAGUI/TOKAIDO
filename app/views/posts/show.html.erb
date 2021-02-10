@@ -1,21 +1,40 @@
 <h2>投稿詳細</h2>
 <div class="containar">
   <h3><%= @post.title %></h3>
-  <p><%= @post.prefecture %></p>
-  <%= attachment_image_tag @post, :image, size: "200x240", format: 'jpg', fallback: "no_image.jpg", class: "default_image" %>
-  <p><%= @post.description %></p>
-  <p><%= @post.address %></p>
+  <table>
+    <tbody>
+      <tr>
+        <td><%= @post.prefecture %></td>
+      </tr>
+      <tr>
+        <td>
+          投稿者：<%= link_to "#{@post.user.name}", user_path(@post.user.id) %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div><%= attachment_image_tag @post, :image, size: "200x240", format: 'jpg', fallback: "no_image.jpg", class: "default_image" %></div>
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          <%= @post.description %>
+        </td>
+      </tr>
+      <tr>
+        <td><%= @post.address %></td>
+      </tr>
+      <tr id="post_<%= @post.id %>">
+        <td class="favorite-btn"><%= render 'favorites/favorite-btn', post: @post %></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-
 <% if @post.user == current_user %>
   <%= link_to "編集する", edit_post_path(@post.id), class:"btn btn-sm btn-success" %>
   <%= link_to "削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger" %>
 <% end %>
-<div id="post_<%= @post.id %>">
-  <p class="favorite-btn">
-  <%= render 'favorites/favorite-btn', post: @post %>
-  </p>
-</div>
+
 
 <div>
   <p>コメント数：<%= @post.post_comments.count %></p>
