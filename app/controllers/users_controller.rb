@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     flash[:notice] = "退会しました。"
     redirect_to root_path
   end
-  
+
   def followings
     @user = User.find(params[:id])
     @users = @user.following_users.all
@@ -41,6 +41,11 @@ class UsersController < ApplicationController
   def followers
     @user = User.find(params[:id])
     @users = @user.follower_users.all
+  end
+
+  def bookmarks
+    @user = User.find(params[:id])
+    @bookmarks = @user.bookmarks.all
   end
 
   private

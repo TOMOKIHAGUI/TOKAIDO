@@ -5,12 +5,11 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show, :edit, :update] do
     member do
-      get "confirm"
-      patch "hide"
-    end
-    member do
+      get :confirm
+      patch :hide
       get :followings
       get :followers
+      get :bookmarks
     end
   end
 
@@ -20,6 +19,7 @@ Rails.application.routes.draw do
   resources :posts do
     resources :post_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
+    resource :bookmarks, only: [:create, :destroy]
   end
 
 end

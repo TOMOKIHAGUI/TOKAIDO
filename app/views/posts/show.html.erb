@@ -29,13 +29,19 @@
       </tr>
     </tbody>
   </table>
+  <table>
+    <tbody>
+      <tr id="post_<%= @post.id %>">
+        <% if @post.user == current_user %>
+          <td><%= link_to "編集する", edit_post_path(@post.id), class:"btn btn-sm btn-success" %></td>
+          <td><%= link_to "削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger" %></td>
+        <% else %>
+          <td class="bookmark-btn"><%= render 'bookmarks/bookmark-btn', post: @post %></td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<% if @post.user == current_user %>
-  <%= link_to "編集する", edit_post_path(@post.id), class:"btn btn-sm btn-success" %>
-  <%= link_to "削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger" %>
-<% end %>
-
-
 <div>
   <p>コメント数：<%= @post.post_comments.count %></p>
 </div>
