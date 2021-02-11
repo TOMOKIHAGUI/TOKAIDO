@@ -1,0 +1,30 @@
+<% if post.voted_by?(current_user) %>
+ <td></td>
+ <td></td>
+ <td></td>
+ <td></td>
+ <%= link_to "投票を取り消す", post_votes_path(post), method: :delete, remote: true, class: "btn btn-sm btn-danger" %>
+<% else %>
+  <%= form_with model :vote, url: post_votes_path(post) do |f| %>
+    <td>
+      <%= f.radio_button :vote, 0, checked: "checked" %>
+      <%= f.label "知らなかった！" %>
+    </td>
+    <td>
+      <%= f.radio_button :vote, 1 %>
+      <%= f.label "聞いたことはある" %>
+    </td>
+    <td>
+      <%= f.radio_button :vote, 2 %>
+      <%= f.label "行ったことある" %>
+    </td>
+    <td>
+      <%= f.radio_button :vote, 3 %>
+      <%= f.label "有名でしょ" %>
+    </td>
+    <td>
+      <%= f.submit "投票する" %>
+    </td>
+  <% end %>
+<% end %>
+

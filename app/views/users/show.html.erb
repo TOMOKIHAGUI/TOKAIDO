@@ -55,7 +55,7 @@
           <p><%= link_to "編集する", edit_user_path(@user.id), class: "btn btn-sm btn-success ml-3" %></p>
           <p><%= link_to "ブックマーク一覧へ", bookmarks_user_path(current_user), class: "btn btn-sm btn-success ml-3" %></p>
           <p><%= link_to "新規投稿する", new_post_path, class: "btn btn-sm btn-primary ml-3" %></p>
-          <p><%= link_to "退会する", confirm_user_path(@user.id), class:"btn btn-sm btn-danger mt-2" %></p>
+          <p><%= link_to "退会する", confirm_user_path(@user.id), class: "btn btn-sm btn-danger mt-2" %></p>
           <% end %>
         </div>
       </div>

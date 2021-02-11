@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :following_users, through: :follower, source: :followed #フォローとフォロワーの紐づけ
   has_many :follower_users, through: :followed, source: :follower  #フォロワーとフォローの紐づけ
   has_many :bookmarks, dependent: :destroy
+  has_many :votes, dependent: :destroy
 
   enum prefecture:{
      "---":0,

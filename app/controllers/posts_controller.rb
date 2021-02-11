@@ -7,6 +7,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = PostComment.new
+    @vote = Vote.new(post_id: @post.id, user_id: current_user.id)
   end
 
   def new

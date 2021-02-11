@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
     resource :bookmarks, only: [:create, :destroy]
+    resource :votes, only: [:create, :destroy]
   end
 
 end

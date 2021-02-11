@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :votes, dependent: :destroy
 
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
@@ -14,6 +15,17 @@ class Post < ApplicationRecord
   def bookmarked_by?(user)
     bookmarks.where(user_id: user.id).exists?
   end
+
+  def voted_by?(user)
+    votes.where(user_id: user.id).exists?
+  end
+
+  def unknown
+    votes.where(detail: 0)
+
+    @have_heard = @post.votes.where(detail: 1)
+    @have_been = @post.votes.where(detail: 2)
+    @famous = @post.votes.where(detail: 3)
 
   attachment :image
 
