@@ -29,12 +29,16 @@
             </tr>
             <% end %>
             <tr>
-              <td class='following-count'><%= link_to "フォロー数：#{@user.follower.count}", followings_user_path(@user.id) %></td>
-              <td class='following-count'><%= link_to "フォロワー数：#{@user.followed.count}", followers_user_path(@user.id) %></td>
-              <% unless @user == current_user %>
-              <td class='follow-btn'>
-                <%= render 'follow-btn', user: @user %>
+              <td>
+                <%= link_to "フォロー数：#{@user.follower.count}", followings_user_path(@user.id) %>
               </td>
+              <td>
+                <%= link_to "フォロワー数：#{@user.followed.count}", followers_user_path(@user.id) %>
+              </td>
+              <% unless @user == current_user %>
+                <td >
+                 <%= render 'relationships/follow-btn', user: @user %>
+                </td>
               <% end %>
             </tr>
           </tbody>

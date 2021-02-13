@@ -22,5 +22,9 @@ Rails.application.routes.draw do
     resource :bookmarks, only: [:create, :destroy]
     resource :votes, only: [:create, :destroy]
   end
+  
+  resources :tags do
+    get 'posts', to: 'posts#search'
+  end
 
 end

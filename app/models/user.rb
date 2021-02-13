@@ -32,7 +32,7 @@ class User < ApplicationRecord
      沖縄県:47
    }
 
-   #フォロー機能で使用するメソッド
+  #フォロー機能で使用するメソッド定義
   def follow(user_id)
     follower.create(followed_id: user_id)
   end
@@ -44,7 +44,6 @@ class User < ApplicationRecord
   def following?(user)
     following_users.include?(user)
   end
-
 
   def active_for_authentication?
     super && (self.is_deleted == false)

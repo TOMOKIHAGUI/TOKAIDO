@@ -1,9 +1,9 @@
 <div class="card-list-containar py-5">
     <h4>タグリスト</h4>
     <% @tag_list.each do |list| %>
-      <%= link_to list.tag_name, tag_posts_path(tag_id: list.id) %>
+      <%= link_to list.tag_name"(#{list.posts.count})", tag_posts_path(tag_id: list.id) %>
     <% end %>
-   <h2>みんなの投稿:新着順</h2>
+   <h2><%= @tag.tag_name %>に関する投稿一覧</h2>
   </div>
   <% @posts.each do |post| %>
   <div class="card w-50 mx-auto mt-4 shadow-lg" id="post_<%= post.id %>">

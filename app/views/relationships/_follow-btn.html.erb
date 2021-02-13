@@ -1,0 +1,5 @@
+<% if current_user.following?(user) %>
+  フォロー済みです<%= link_to 'フォロー解除', unfollow_path(user.id), method: :DELETE, class: 'btn btn-info' %>
+<% else %>
+  <%= link_to 'フォローする', follow_path(user.id), method: :POST, class: 'btn btn-success' %>
+<% end %>
