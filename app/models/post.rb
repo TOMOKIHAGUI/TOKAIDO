@@ -22,7 +22,7 @@ class Post < ApplicationRecord
     votes.where(user_id: user.id).exists?
   end
 
-  # save_tagインスタンスメソッド定義
+  # save_tagインスタンスメソッド
   def save_tag(tags)
     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
     old_tags = current_tags - tags
@@ -40,7 +40,7 @@ class Post < ApplicationRecord
 
   attachment :image
   geocoded_by :address # 住所を緯度経度に変換
-  after_validation :geocode, if: :address_changed?
+  after_validation :geocode, if: :address_changed? #投稿編集時に
 
   enum prefecture:{
      "---":0,
