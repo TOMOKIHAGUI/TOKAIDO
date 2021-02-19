@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show, :edit, :update] do
     member do
+      get :history
       get :confirm
       patch :hide
       get :followings
@@ -12,19 +13,19 @@ Rails.application.routes.draw do
       get :bookmarks
     end
   end
-
-  post 'follow/:id' => 'relationships#follow', as: 'follow'
-  delete 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
-
+  
   resources :posts do
     resources :post_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
     resource :bookmarks, only: [:create, :destroy]
     resource :votes, only: [:create, :destroy]
   end
-  
+
   resources :tags do
-    get 'posts', to: 'posts#search'
+    get 'posts', to: 'posts#tag_search'
   end
+  
+  post 'follow/:id' => 'relationships#follow', as: 'follow'
+  delete 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
 
 end

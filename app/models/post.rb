@@ -37,6 +37,7 @@ class Post < ApplicationRecord
       self.tags << new_tag
     end
   end
+  
 
   attachment :image
   geocoded_by :address # 住所を緯度経度に変換

@@ -2,7 +2,7 @@
 <div class="containar">
   <h3><%= @post.title %></h3>
   <table>
-    <tbody id="post_<%= @post.id %>">
+    <tbody>
       <tr>
         <td>タグ</td>
         <% @post_tags.each do |tag| %>
@@ -17,7 +17,7 @@
           投稿者：<%= link_to "#{@post.user.name}", user_path(@post.user.id) %>
         </td>
       </tr>
-      <tr>
+      <tr id ="vote-counts">
         <%= render 'votes/vote-counts', post: @post %>
       </tr>
     </tbody>
@@ -33,14 +33,14 @@
       <tr>
         <td><%= @post.address %></td>
       </tr>
-      <tr id="post_<%= @post.id %>">
-        <td class="favorite-btn"><%= render 'favorites/favorite-btn', post: @post %></td>
+      <tr>
+        <td id="favorite-btn"><%= render 'favorites/favorite-btn', post: @post %></td>
       </tr>
     </tbody>
   </table>
   <table>
-    <tbody id="post_<%= @post.id %>">
-      <tr>
+    <tbody>
+      <tr id="vote-btn">
         <%= render 'votes/vote-btn', post: @post, vote: @vote %>
       </tr>
       <tr>
@@ -48,7 +48,7 @@
           <td><%= link_to "編集する", edit_post_path(@post.id), class:"btn btn-sm btn-success" %></td>
           <td><%= link_to "削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger" %></td>
         <% else %>
-          <td class="bookmark-btn"><%= render 'bookmarks/bookmark-btn', post: @post %></td>
+          <td id="bookmark-btn"><%= render 'bookmarks/bookmark-btn', post: @post %></td>
         <% end %>
       </tr>
     </tbody>

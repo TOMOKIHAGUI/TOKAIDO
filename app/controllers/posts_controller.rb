@@ -19,7 +19,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    tag_list = params[:post][:tag_name].split(nil)
+    tag_list = params[:post][:tag_name].split(/[[:blank:]]+/).select(&:present?)
     if @post.save
       @post.save_tag(tag_list)
       redirect_to post_path(@post.id), notice: '新しい投稿をしました。'
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    tag_list = params[:post][:tag_name].split(nil)
+    tag_list = params[:post][:tag_name].split(/[[:blank:]]+/).select(&:present?)
     if @post.update(post_params)
       @post.save_tag(tag_list)
       redirect_to post_path(@post.id), notice: '投稿を編集しました。'
@@ -49,7 +49,8 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  def search
+
+  def tag_search
     @tag_list = Tag.all  #こっちの投稿一覧表示ページでも全てのタグを表示するために、タグを全取得
     @tag = Tag.find(params[:tag_id])  #クリックしたタグを取得
     @posts = @tag.posts.page(params[:page]).reverse_order    #クリックしたタグに紐付けられた投稿を全て表示

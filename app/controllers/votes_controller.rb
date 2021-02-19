@@ -3,18 +3,18 @@ class VotesController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    vote = @post.votes.new(vote_params)
-    vote.user_id = current_user.id
-    vote.post_id = @post.id
-    vote.save
-    redirect_to request.referer
+    @vote = @post.votes.new(vote_params)
+    @vote.user_id = current_user.id
+    @vote.post_id = @post.id
+    @vote.save
+
   end
 
   def destroy
     @post = Post.find(params[:post_id])
-    vote = @post.votes.find_by(user_id: current_user.id)
-    vote.destroy
-    redirect_to request.referer
+    @vote = @post.votes.find_by(user_id: current_user.id)
+    @vote.destroy
+
   end
 
   private
