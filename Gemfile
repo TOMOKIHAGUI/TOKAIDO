@@ -71,3 +71,6 @@ gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
 gem 'geocoder' # 住所を緯度経度に変換
 gem "dotenv-rails" #APIキーを隠す
+group :production do
+  gem 'mysql2'
+end
