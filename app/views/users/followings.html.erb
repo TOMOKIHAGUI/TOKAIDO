@@ -1,0 +1,6 @@
+<h2>フォロー一覧</h2>
+<% if @users.exists? %>
+  <%= render 'relationships/follow_follower', users: @users %>
+<% else %>
+  <p>フォローしてる人はいません</p>
+<% end %>

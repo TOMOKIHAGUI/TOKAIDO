@@ -1,0 +1,2 @@
+$("#vote-counts").html("<%= j(render 'votes/vote-counts', { post: @post }) %>")
+$("#vote-btn").html("<%= j(render 'votes/vote-btn', { post: @post, vote: @vote }) %>")

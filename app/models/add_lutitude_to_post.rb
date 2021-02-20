@@ -1,0 +1,2 @@
+class AddLutitudeToPost < ApplicationRecord
+end

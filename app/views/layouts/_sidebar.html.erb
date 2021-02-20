@@ -1,0 +1,54 @@
+<div class="col-md-3">
+  <% if user_signed_in? %>
+    <table>
+      <thead class="thead-dark">
+        <tr>
+          <th>マイメニュー</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= attachment_image_tag user, :image, format: 'jpeg', fallback: "no_image.jpg", size: "150x150", class: "img-thumbnail" %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "#{user.name}さん", user_path(user) %></td>
+        </tr>
+        <tr>
+          <td><%= user.prefecture %></td>
+        </tr>
+        <tr>
+          <td>投稿数：<%= user.posts.count %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% else %>
+  <table>
+    <thead class="thead-dark">
+      <tr>
+        <th>ゲストメニュー</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <%= image_tag "no_image.jpg", size: "150x150", class: "img-thumbnail" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          ゲストさん
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <% end %>
+
+  <h4>タグリスト</h4>
+    <% tag_list.each do |list| %>
+      <%= link_to list.tag_name, tag_posts_path(tag_id: list.id), class: "btn btn-primary" %>
+    <% end %>
+
+  <h4>地域から検索する</h4>
+
+
+</div>
