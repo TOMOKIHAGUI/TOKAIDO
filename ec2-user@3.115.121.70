@@ -1,0 +1,6 @@
+GOOGLE_MAP_API_KEY=AIzaSyBda-50bzreMnCEWAfvMd8H3VXybDD-mCc
+
+DB_USERNAME=root
+DB_PASSWORD=renshin175
+DB_HOST=rds-mysql-server.cehewjvc1mie.ap-northeast-1.rds.amazonaws.com
+DB_DATABASE=TOKAIDO
