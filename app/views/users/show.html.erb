@@ -28,6 +28,7 @@
             <td><%= @user.email %></td>
           </tr>
           <% end %>
+          <% if user_signed_in? %>
           <tr>
             <td>
               <%= link_to "フォロー数：#{@user.follower.count}", followings_user_path(@user.id) %>
@@ -36,6 +37,7 @@
               <%= link_to "フォロワー数：#{@user.followed.count}", followers_user_path(@user.id) %>
             </td>
           </tr>
+          <% end %>
         </tbody>
       </table>
       <table class="table">

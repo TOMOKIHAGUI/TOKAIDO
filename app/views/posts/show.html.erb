@@ -33,11 +33,14 @@
       <tr>
         <td><%= @post.address %></td>
       </tr>
+      <% if user_signed_in? %>
       <tr>
         <td id="favorite-btn"><%= render 'favorites/favorite-btn', post: @post %></td>
       </tr>
+      <% end %>
     </tbody>
   </table>
+  <% if user_signed_in? %>
   <table>
     <tbody>
       <tr id="vote-btn">
@@ -53,6 +56,7 @@
       </tr>
     </tbody>
   </table>
+  <% end %>
 </div>
 <div>
   <p>コメント数：<%= @post.post_comments.count %></p>
@@ -61,9 +65,11 @@
 <div id = "comments">
   <%= render partial: 'post_comments/comment', locals: {post: @post} %>
 </div>
+<% if user_signed_in? %>
 <div class="new-comment">
   <%= render partial: 'post_comments/comment-form', locals: {post: @post, comment: @comment} %>
 </div>
+<% end %>
 
 <script type="text/javascript">
   function initMap() {

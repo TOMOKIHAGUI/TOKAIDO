@@ -16,3 +16,30 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+.jumbotron {
+  background-image: image-url('clay-banks-aJvzkENWZZM-unsplash');
+  background-size: cover;
+  background-position: center;
+  height: 55vh;
+}
+
+.title-logo {
+  margin-top: 50px;
+}
+
+
+.sub-img {
+  background-image: image-url('patrick-dozkVhDyvhQ-unsplash.jpg');
+  background-size: cover;
+  height: 30vh;
+}
+
+.title-img {
+  background-image: image-url;
+}
+
+.footer{
+  width: 100%;
+  height: 20vh;
+}

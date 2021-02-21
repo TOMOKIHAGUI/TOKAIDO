@@ -8,6 +8,11 @@
         <div class="card-list-containar py-5">
           <div class="row">
             <%= render 'layouts/sidebar', user: current_user, tag_list: @tag_list %>
+            <div class="col-md-8">
+              <div class="title-img text-center">
+                <h2 class="page-text">投稿一覧</h2>
+              </div>
+            </div>
         
           <% @posts.each do |post| %>
           <div class="col-3">
@@ -27,7 +32,9 @@
                     <%= attachment_image_tag post.user, :image, fallback: "no_image.jpg", size: "40x40", class:"rounded ml-2"; %>
                   <% end %>
                 </h6>
+                <p class="card-text">タグ：<%= post.tags.name %></p>
                 <p class="card-text">地域：<%= post.prefecture %></p>
+                <p class="card-text">投稿日：<%= post.created_at.strftime("%Y/%m/%d") %></p>
                 <p class="card-text"><%= truncate(post.description, length: 15) %></p>
                 <p class="comments">コメント：<%= post.post_comments.count %> |
                 <span class="favorite">いいね数：<%= post.favorites.count %></span></p>
