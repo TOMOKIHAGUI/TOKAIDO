@@ -4,19 +4,21 @@
             <% @tag_list.each do |list| %>
               <%= link_to list.tag_name, tag_posts_path(tag_id: list.id) %>
             <% end %>
-           <h2>投稿一覧</h2>
-        <div class="card-list-containar py-5">
+        <div class="containar">
           <div class="row">
-            <%= render 'layouts/sidebar', user: current_user, tag_list: @tag_list %>
-            <div class="col-md-8">
-              <div class="title-img text-center">
-                <h2 class="page-text">投稿一覧</h2>
+            <div class="col-md-6">
+              <div class="title-img img-thumbnail text-center shadow ml-4">
+                <h1 class="index-text text-light font-weight-bold align-middle">投稿一覧</h1>
               </div>
             </div>
-        
+            <%= render 'layouts/sidebar', user: current_user, tag_list: @tag_list %>
+          </div>
+        </div>
+        <div class="card-list-containar py-5">
+          <div class="row">
           <% @posts.each do |post| %>
           <div class="col-3">
-            <div class="card mt-4 shadow-lg" id="post_<%= post.id %>">
+            <div class="card mt-4 ml-4 shadow-lg" id="post_<%= post.id %>">
               <%= link_to post_path(post.id) do %>
                 <%= attachment_image_tag post, :image, format: 'jpg', fallback: "no_image.jpg", class:"card-img-top"; %>
               <% end%>

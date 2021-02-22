@@ -1,58 +1,94 @@
-<h2>投稿詳細</h2>
 <div class="containar">
-  <h3><%= @post.title %></h3>
+  <div class="title-img col-md-4 img-thumbnail text-center shadow ml-4">
+    <h2>投稿詳細</h2>
+  </div>
+</div>
+<div class="containar">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          <h3><%= @post.title %></h3>
+        </div>
+        <div classs="card-img">
+          <%= attachment_image_tag @post, :image, format: 'jpg', fallback: "no_image.jpg", class: "default_image" %>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title"><%= @post.prefecture %></h4>
+          <h5 class="card-subtitle mb-2 text-muted">
+            タグ：
+            <% @post_tags.each do |tag| %>
+              <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %>
+            <% end %>
+          </h5>
+          <p class="card-text"><%= @post.description %></br></br>
+            投稿者：<%= link_to "#{@post.user.name}", user_path(@post.user.id) %></br>
+            住所：<%= @post.address %>
+          </p>
+          <p id ="vote-counts">
+        　　<%= render 'votes/vote-counts', post: @post %>
+        　</p>
+        </div>
+        <% if user_signed_in? %>
+          <ul class="list-group list-group-flush">
+            <li id="favorite-btn" class="list-group-item"><%= render 'favorites/favorite-btn', post: @post %></li>
+            <li id="vote-btn" class="list-group-item"><%= render 'votes/vote-btn', post: @post, vote: @vote %></li>
+          </ul>
+        <% end %>
+      </div>
+        <% if @post.user == current_user %>
+          <%= link_to "編集する", edit_post_path(@post.id), class:"btn btn-sm btn-success" %>
+          <%= link_to "削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger" %>
+        <% else %>
+          <p id="bookmark-btn"><%= render 'bookmarks/bookmark-btn', post: @post %></p>
+        <% end %>
+    </div>
+  </div>
+  
   <table>
     <tbody>
       <tr>
         <td>タグ</td>
-        <% @post_tags.each do |tag| %>
-          <td><%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %></td>
-        <% end %>
+        
       </tr>
       <tr>
-        <td><%= @post.prefecture %></td>
+        <td></td>
       </tr>
       <tr>
         <td>
-          投稿者：<%= link_to "#{@post.user.name}", user_path(@post.user.id) %>
+          
         </td>
       </tr>
-      <tr id ="vote-counts">
-        <%= render 'votes/vote-counts', post: @post %>
+      
       </tr>
     </tbody>
   </table>
-  <div><%= attachment_image_tag @post, :image, size: "200x240", format: 'jpg', fallback: "no_image.jpg", class: "default_image" %></div>
+  <div></div>
   <table>
     <tbody>
       <tr>
         <td>
-          <%= @post.description %>
+          
         </td>
       </tr>
       <tr>
-        <td><%= @post.address %></td>
+        <td></td>
       </tr>
-      <% if user_signed_in? %>
+      
       <tr>
-        <td id="favorite-btn"><%= render 'favorites/favorite-btn', post: @post %></td>
+        
       </tr>
-      <% end %>
+     
     </tbody>
   </table>
   <% if user_signed_in? %>
   <table>
     <tbody>
       <tr id="vote-btn">
-        <%= render 'votes/vote-btn', post: @post, vote: @vote %>
+      
       </tr>
       <tr>
-        <% if @post.user == current_user %>
-          <td><%= link_to "編集する", edit_post_path(@post.id), class:"btn btn-sm btn-success" %></td>
-          <td><%= link_to "削除する", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-sm btn-danger" %></td>
-        <% else %>
-          <td id="bookmark-btn"><%= render 'bookmarks/bookmark-btn', post: @post %></td>
-        <% end %>
+
       </tr>
     </tbody>
   </table>

@@ -1,3 +1,10 @@
+
+<div class="col-md-3">
+  <h4>タグリスト</h4>
+    <% tag_list.each do |list| %>
+      <%= link_to list.tag_name, tag_posts_path(tag_id: list.id), class: "btn btn-primary" %>
+    <% end %>
+  </div>
 <div class="col-md-3">
   <% if user_signed_in? %>
     <table>
@@ -42,13 +49,4 @@
     </tbody>
   </table>
   <% end %>
-
-  <h4>タグリスト</h4>
-    <% tag_list.each do |list| %>
-      <%= link_to list.tag_name, tag_posts_path(tag_id: list.id), class: "btn btn-primary" %>
-    <% end %>
-
-  <h4>地域から検索する</h4>
-
-
 </div>
